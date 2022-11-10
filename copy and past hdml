@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <title>Clicker Game</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+        }
+
+        h1 {
+            color:green;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        p {
+            color: white;
+            font-size: 1.2em;
+        }
+
+        img {
+            padding: 20px;
+            border: 3px solid grey;
+            border-radius: 10px;
+        }
+
+        img:hover {
+            border: 3px solid maroon;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Welcome to the clicker game made by Nolan Sellhorn</h1>
+
+    <p>Click the button to get cash!</p>
+
+    <p id="scoreText">cash: 0</p>
+
+    <button id="score">Click me!</button>
+
+    <h2>Store</h2>
+    <p>Clicker: 100 cash</p>
+    <img id="buy" src="cursor-23231_640.png" width=50px>
+    <p id="clicker">x1</p>
+
+    <p>Auto Clicker:10,000 cash</p>
+    <img id="buy-auto-clicker" src="cursor-154478_640.png" width=50px>
+    <p id="auto-clickers">x0</p>
+
+
+    <script>
+
+        let score = 0;
+        let clickers = 1;
+        let autoClickers = 0;
+
+        document.getElementById("score").addEventListener("click", function () {
+            score = score + clickers;
+            document.getElementById("scoreText").innerText = "cash: " + score;
+        });
+
+        document.getElementById("buy").addEventListener("click", function () {
+            if (score >= 100) {
+                clickers = clickers + 1;
+                score = score - 100;
+                document.getElementById("clicker").innerText = "x" + clickers;
+                document.getElementById("scoreText").innerText = "cash: " + score;
+            }
+        });
+
+        document.getElementById("buy-auto-clicker").addEventListener("click", function () {
+            if (score >= 10000) {
+                autoClickers = autoClickers + 1;
+                score = score - 10000;
+                document.getElementById("scoreText").innerText = "cash: " + score;
+                document.getElementById("auto-clickers").innerText = "x" + autoClickers;
+
+                setInterval(function () {
+                    score = score + clickers;
+                    document.getElementById("scoreText").innerText = "cash: " + score;
+                }, 10000);
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
